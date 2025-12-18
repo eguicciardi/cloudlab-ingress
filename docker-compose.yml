@@ -17,7 +17,9 @@ services:
       interval: 10s
       timeout: 3s
     networks:
-      default:
-        external: true
-        name: cloudlab-network
+      - cloudlab-network
+
+networks:
+  cloudlab-network:
+    external: true
         
