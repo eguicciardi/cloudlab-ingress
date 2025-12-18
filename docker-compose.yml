@@ -1,0 +1,23 @@
+services:
+  app:
+    name: cloudlab-ingress
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+    environment:
+      TZ: "Europe/Rome"
+    volumes:
+      - ./docker-volumes/data:/data
+      - ./docker-volumes/letsencrypt:/etc/letsencrypt
+    healthcheck:
+      test: ["CMD", "/usr/bin/check-health"]
+      interval: 10s
+      timeout: 3s
+    networks:
+      default:
+        external: true
+        name: cloudlab-network
+        
