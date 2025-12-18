@@ -1,6 +1,6 @@
 services:
   app:
-    name: cloudlab-ingress
+    container_name: cloudlab-ingress
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
